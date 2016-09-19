@@ -1,6 +1,9 @@
-movieStubApp.factory('movieStubFactory', function ($resource) {
-    return $resource('/movies');
+
+
+
+foodTrackingApp.factory('movieStubFactory', function ($resource) {
+    return $resource('/foods');
 });
-movieStubApp.factory('movieStubBookingsFactory', function ($resource) {
+foodTrackingApp.factory('movieStubBookingsFactory', function ($resource) {
     return $resource('/bookings');
 });

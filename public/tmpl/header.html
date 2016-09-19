@@ -15,11 +15,14 @@
                 <li data-ng-class="{active:isActive('/')}">
                     <a href="#">Fruits</a>
                 </li>
-				<li data-ng-class="{active:isActivePath('/')}" data-ng-show="isActivePath('/newMeat')">
+				<li data-ng-class="{active:isActivePath('/')}" data-ng-show="isActivePath('/')">
+                    <a href="#/veg/vegetableList">Vegetables</a>
+                </li>
+				<li data-ng-class="{active:isActivePath('/')}" data-ng-show="isActivePath('/')">
                     <a href="#/newMeat">Meats</a>
                 </li>
-                <li data-ng-class="{active:isActive('/bookings')}">
-                    <a href="#/bookings">Tracking List</a>
+                <li data-ng-class="{active:isActive('/Tracking')}">
+                    <a href="#/Tracking">Tracking List</a>
                 </li>              
  
             </ul>

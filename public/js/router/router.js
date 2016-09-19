@@ -1,18 +1,32 @@
-movieStubApp.config(function ($routeProvider) {
+foodTrackingApp.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'tmpl/home.html',
-            controller: 'movieStubController'
+            controller: 'foodTrackingController'
         }).when('/food/:foodName', {
-            templateUrl: 'tmpl/bookTickets.html',
+            templateUrl: 'tmpl/fruitDetail.html',
             controller: 'FoodDetailCtrl'
          }).when('/newMeat', {
-            templateUrl: 'tmpl/country-list.html',
+            templateUrl: 'tmpl/meatList.html',
             controller: 'meatController'
-         }).when('/:countryName', {
-             templateUrl: 'tmpl/country-detail.html',
-            controller: 'CountryDetailCtrl' 
-         
+         }).when('/:meatName', {
+             templateUrl: 'tmpl/meatDetail.html',
+            controller: 'MeatDetailCtrl' 
+		 }).when('/veg/vegetableList', {
+             templateUrl: 'tmpl/vegetableList.html',
+            controller: 'VegetableTrackingController'
+		}).when('/vegetableDetail/:vegName', {
+             templateUrl: 'tmpl/vegetableDetail.html',
+            controller: 'vegetableDetailCtrl' 
+         /*  }).when('/bookings', {
+             templateUrl: 'tmpl/bookings.html',
+            controller: 'ContactController'  */
+			/* }).when('/vegetableList', {
+             templateUrl: 'tmpl/country-list.html',
+            controller: 'VegetableTrackingController' */ 
+			/* }).when('/vegDetail', {
+             templateUrl: 'tmpl/bookTickets.html',
+            controller: 'VegetableDetailController'  */
 			}).otherwise({ redirectTo: ''
         });
 });

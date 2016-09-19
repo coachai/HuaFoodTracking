@@ -1,0 +1,36 @@
+[
+        {
+            "id": 0,
+            "name": "Orange",
+            "availability": 9,
+            
+            "thumb": "Images/oranges.jpg"
+		
+        },
+              
+		 {
+            "id": 1,
+            "name": "Banana",
+            "rating": 5,
+            "availability": 5,
+           
+            "thumb": "Images/Banana.jpg"
+        },
+		 {
+            "id": 2,
+            "name": "kiwi",
+            "rating": 5,
+            "availability": 5,
+         
+            "thumb": "Images/kiwi-fruit.jpg"
+        },
+		 
+		  {
+            "id": 3,
+            "name": "Apple",
+            "rating": 5,
+            "availability": 3,
+           
+            "thumb": "Images/Apple.jpg"
+        }
+    ]

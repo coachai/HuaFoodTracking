@@ -4,7 +4,7 @@
             "name": "Orange",
             "availability": 9,
             
-            "thumb": "Images/Orange.jpg"
+            "thumb": "Images/oranges.jpg"
 		
         },
         {
@@ -13,7 +13,7 @@
             "rating": 5,
             "availability": 3,
             
-            "thumb": "Images/Xilanhua.jpg"
+            "thumb": "Images/broccoli.jpg"
         },
         {
             "id": 2,
@@ -37,7 +37,7 @@
             "rating": 5,
             "availability": 5,
          
-            "thumb": "Images/Mihoutao.jpg"
+            "thumb": "Images/kiwi-fruit.jpg"
         },
 		 {
             "id": 5,
@@ -45,7 +45,7 @@
             "rating": 5,
             "availability": 5,
         
-            "thumb": "Images/Cabbage.jpg"
+            "thumb": "Images/Cabbage2.jpg"
         },
 		
 		 {
@@ -54,7 +54,7 @@
             "rating": 5,
             "availability": 5,
         
-            "thumb": "Images/Nangua.jpg"
+            "thumb": "Images/pumpkin.jpg"
         },
 		
 		 {

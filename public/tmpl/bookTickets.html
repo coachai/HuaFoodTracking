@@ -18,23 +18,17 @@
 
 <div ng-app="app" ng-controller="ContactController">
     <form class="well">
-        <label>Name</label>
+        <label>Employee Name</label>
         <input type="text" name="name" ng-model="newcontact.name" />
       	<label>Quantity</label>
 		<input type="text" name="qty"   data-ng-model="newcontact.qty"   value="1" required>
+		
 		<label>Reason</label>
         <input type="text" name="reason" ng-model="newcontact.reason" />
 		
-             <label for="date">Date</label>
-                    <select data-ng-model="newcontact.date"  name="date" id="date" required>
-                        <option>Manday</option>
-                        <option>Tuesday</option>
-                        <option>Wednesday</option>
-						<option>Thursday</option>
-                        <option>Friday</option>
-                        <option>Saturday</option>
-						<option>Sunday</option>
-                    </select>
+        <label for="date">Date</label>
+       	<input type="date" ng-model="newcontact.date" value="{{ date | date: 'yyyy/MM/dd' }}" required/>
+        <br />{{ date | date: 'dd/MM/yyyy' }}
         
 		<br/>
         <input type="hidden" ng-model="newcontact.id" />
@@ -43,7 +37,8 @@
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                <th>Name</th>
+			    <th>Food Name</th>
+                <th>Employee Name</th>
                 <th>Quantity</th>
                 <th>Reason</th>
                 <th>Date</th>
@@ -51,6 +46,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="contact in contacts">
+			    <td>{{contact.foodName}}</td>
                 <td>{{ contact.name }}</td>
                 <td>{{ contact.qty }}</td>
                 <td>{{ contact.reason }}</td>
@@ -61,5 +57,5 @@
             </tr>
         </tbody>
     </table>
-	 <a ng-href="#/bookings" class="btn btn-success " role="button ">Submit »</a>
+	 <a href="#/templ/bookings" class="btn btn-success pull-right" role="button ">Submit »</a>
 </div>

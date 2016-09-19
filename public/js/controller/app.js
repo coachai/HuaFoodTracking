@@ -1,8 +1,8 @@
-window.movieStubApp = angular.module('movieStubApp', ['ngRoute']);
+window.foodTrackingApp = angular.module('foodTrackingApp', ['ngRoute']);
 
-movieStubApp.controller("movieStubController", ['$scope', '$http',
-  function ($scope, $http) {
-    $http.get('data/foods.json').success(function(data) {
+foodTrackingApp.controller("foodTrackingController", ['$scope', '$http',
+  function ($scope, $http,$location) {
+    $http.get('data/fruit.json').success(function(data) {
       $scope.foods = data;
    
    $scope.currFood = null;
@@ -28,17 +28,18 @@ movieStubApp.controller("movieStubController", ['$scope', '$http',
     }
  
     $scope.isActivePath = function (route) {
-        return ($location.path()).indexOf(route) >= 0;
+       return route === $location.path();
     }
 
 
 }]);
-movieStubApp.controller("meatController", ['$scope', '$http',
-  function ($scope, $http) {
-    $http.get('data/meat.json').success(function(data) {
-      $scope.meats = data;
+
+foodTrackingApp.controller("VegetableTrackingController", ['$scope', '$http',
+   function ($scope, $http,$location) {
+    $http.get('data/vegetables.json').success(function(data) {
+      $scope.vegetables = data;
 	 
-	   $scope.currMeat = null;
+	/*    $scope.currMeat = null;
     $scope.getMeatById = function (id) {
         var meats = $scope.meats;
         for (var i = 0; i < meats.length; i++) {
@@ -47,11 +48,11 @@ movieStubApp.controller("meatController", ['$scope', '$http',
                 $scope.currMeat = meat;
             }
         }
-    };
+    }; */
     });
     $scope.headerSrc = "tmpl/header.html";
-  
-   
+	 
+	 
     // A simple back function, that will help us navigate between views
     $scope.back = function () {
         window.history.back();
@@ -67,13 +68,47 @@ movieStubApp.controller("meatController", ['$scope', '$http',
 
 
 }]);
-movieStubApp.controller("movieDetailsController", function ($scope, $routeParams) {
+foodTrackingApp.controller("meatController", ['$scope', '$http',
+  function ($scope, $http,$location) {
+    $http.get('data/meat.json').success(function(data) {
+      $scope.meats = data;
+	 
+/* 	   $scope.currMeat = null;
+    $scope.getMeatById = function (id) {
+        var meats = $scope.meats;
+        for (var i = 0; i < meats.length; i++) {
+            var meat = $scope.meats[i];
+            if (meat.id == id) {
+                $scope.currMeat = meat;
+            }
+        }
+    }; */
+    });
+  //  $scope.headerSrc = "tmpl/header.html";
+  
+   
+    // A simple back function, that will help us navigate between views
+    $scope.back = function () {
+        window.history.back();
+    };
+	
+	/*  $scope.isActive = function (route) {
+        return route === $location.path();
+    }
+ 
+    $scope.isActivePath = function (route) {
+        return ($location.path()).indexOf(route) >= 0;
+    } */
+
+
+}]);
+foodTrackingApp.controller("movieDetailsController", function ($scope, $routeParams) {
     $scope.getMeatById($routeParams.id);
 });
 
  
-movieStubApp.controller('CountryDetailCtrl', function ($scope, $routeParams, $http){
-        $scope.name = $routeParams.countryName;
+foodTrackingApp.controller('MeatDetailCtrl', function ($scope, $routeParams, $http){
+        $scope.name = $routeParams.meatName;
 
         $http.get('data/meat.json').success(function(data) {
           $scope.meat = data.filter(function(entry){
@@ -82,17 +117,29 @@ movieStubApp.controller('CountryDetailCtrl', function ($scope, $routeParams, $ht
         });
       });
 
-movieStubApp.controller('FoodDetailCtrl', function ($scope, $routeParams, $http){
+foodTrackingApp.controller('FoodDetailCtrl', function ($scope, $routeParams, $http){
         $scope.name = $routeParams.foodName;
 
-        $http.get('data/foods.json').success(function(data) {
-          $scope.food = data.filter(function(entry){
+        $http.get('data/fruit.json').success(function(data) {
+          $scope.fruit = data.filter(function(entry){
             return entry.name === $scope.name;
           })[0];
         });
       });
-	  
-movieStubApp.service('ContactService', function () {
+	 
+foodTrackingApp.controller('vegetableDetailCtrl', function ($scope, $routeParams, $http){
+        $scope.name = $routeParams.vegName;
+        
+		$http.get('data/vegetables.json').success(function(data) {
+          $scope.vegetable = data.filter(function(entry){
+            return entry.name === $scope.name;
+       /*  $http.get('data/vegetables.json').success(function(data) {
+          $scope.food = data.filter(function(entry){
+            return entry.name === $scope.name; */
+          })[0];
+        });
+      });	 
+foodTrackingApp.service('ContactService', function () {
     //to create unique contact id
     var uid = 1;
     
@@ -151,11 +198,14 @@ movieStubApp.service('ContactService', function () {
     }
 });
 
-movieStubApp.controller('ContactController', function ($scope, ContactService) {
-
-    $scope.contacts = ContactService.list();
+foodTrackingApp.controller('ContactController', function ($scope, ContactService) {
+    //$scope.formData = {};
+	//$scope.newcontact.foodName = $scope.name;
+      $scope.contacts = ContactService.list();
 
     $scope.saveContact = function () {
+		$scope.onlyNumbers = /^\d+$/;
+		$scope.newcontact.foodName = $scope.name;
         ContactService.save($scope.newcontact);
         $scope.newcontact = {};
     }
@@ -170,31 +220,49 @@ movieStubApp.controller('ContactController', function ($scope, ContactService) {
 
     $scope.edit = function (id) {
         $scope.newcontact = angular.copy(ContactService.get(id));
+
     }
+	
+	
 })
 
-movieStubApp.controller("bookTicketsController", function ($scope, $http, $location, $routeParams) {
-    $scope.getFoodById($routeParams.id);
+foodTrackingApp.controller("TrackingList", function ($scope, $http, $location, $routeParams) {
+    /* $scope.getFoodById($routeParams.id);
     $scope.onlyNumbers = /^\d+$/;
     $scope.formData = {};
     $scope.formData.movie_id = $scope.currFood.id;
     $scope.formData.movie_name = $scope.currFood.name;
-    $scope.formData.date = "Today"
- 
+    $scope.formData.date = "Today" */
+	
+    $scope.submit = function () {
+        console.log(Contacts);
+        $http({
+            method: 'POST',
+            url: '/book',
+            data: $.param(Contacts), // pass in data as strings
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            } // set the headers so angular passing info as form data (not request payload)
+        })
+            .success(function (data) {
+                $location.path("/bookings");
+            });
+
+    }
    
 });
-movieStubApp.controller("bookingDetailsController", function ($scope, movieStubBookingsFactory) {
+foodTrackingApp.controller("bookingDetailsController", function ($scope, movieStubBookingsFactory) {
    // $scope.bookings = movieStubBookingsFactory.query();
-	$scope.bookings = ContactService.list();
+	$scope.contacts = ContactService.list();
 });
 
 
-movieStubApp.controller('MainCtrl', function($scope) {
+foodTrackingApp.controller('MainCtrl', function($scope) {
   $scope.var1 = '12-07-2013';
 });
 
 
-movieStubApp.directive('datetimez', function() {
+foodTrackingApp.directive('datetimez', function() {
     return {
         restrict: 'A',
         require : 'ngModel',
@@ -212,3 +280,7 @@ movieStubApp.directive('datetimez', function() {
         }
     };
 });
+
+ foodTrackingApp.filter('encodeURI', function(){
+        return window.encodeURI;
+      })

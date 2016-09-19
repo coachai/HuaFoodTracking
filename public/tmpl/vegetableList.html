@@ -1,0 +1,21 @@
+<h2>Vegetables Track</h2>
+<input type="text" placeholder="Search Meats" class="form-control" data-ng-model="search">
+ 
+<div class="">
+    <div class="row movies-list">
+        <div class="col-md-4" data-ng-repeat="vegetable in vegetables | orderBy:'-id':true | filter:search">
+            <h2>{{vegetable.name | uppercase}}</h2>
+            <p>
+                <a href="#/vegetableDetail/{{vegetable.name}}">
+                <img data-ng-src="{{vegetable.thumb}}"  class="thumb-big">
+			  </a>
+            </p>
+            <p>{{vegetable.review | limitTo:99}}...</p>
+            <p>
+                
+                <a ng-href="#/vegetableDetail/{{vegetable.name}} " class="btn btn-success "> Track</a>
+            
+			</p>
+        </div>
+    </div>
+</div>
