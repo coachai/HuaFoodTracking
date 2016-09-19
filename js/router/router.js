@@ -12,7 +12,9 @@ foodTrackingApp.config(function ($routeProvider) {
          }).when('/:countryName', {
              templateUrl: 'tmpl/country-detail.html',
             controller: 'CountryDetailCtrl' 
-         
+          }).when('/bookings', {
+             templateUrl: 'tmpl/bookings.html',
+            controller: 'ContactController' 
 			}).otherwise({ redirectTo: ''
         });
 });

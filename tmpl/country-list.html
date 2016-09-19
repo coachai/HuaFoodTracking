@@ -1,8 +1,3 @@
-<ul>
-  <li ng-repeat="country in countries">
-    <a href="#/{{country.name}}">{{country.name}}</a>
-  </li>
-</ul>
 
 <h2>Meats Track</h2>
 <input type="text" placeholder="Search Meats" class="form-control" data-ng-model="search">
@@ -12,7 +7,10 @@
         <div class="col-md-4" data-ng-repeat="meat in meats | orderBy:'-id':true | filter:search">
             <h2>{{meat.name | uppercase}}</h2>
             <p>
-                <img data-ng-src="{{meat.thumb}}" class="thumb-big">
+			   <a href="#/{{meat.name}}">
+                <img data-ng-src="{{meat.thumb}}"  class="thumb-big">
+			  </a>
+                
             </p>
             <p>{{meat.review | limitTo:99}}...</p>
             <p>

@@ -152,10 +152,13 @@ foodTrackingApp.service('ContactService', function () {
 });
 
 foodTrackingApp.controller('ContactController', function ($scope, ContactService) {
-
+    //$scope.formData = {};
+	//$scope.newcontact.foodName = $scope.name;
     $scope.contacts = ContactService.list();
 
     $scope.saveContact = function () {
+		$scope.onlyNumbers = /^\d+$/;
+		$scope.newcontact.foodName = $scope.name;
         ContactService.save($scope.newcontact);
         $scope.newcontact = {};
     }
@@ -185,7 +188,7 @@ foodTrackingApp.controller("bookTicketsController", function ($scope, $http, $lo
 });
 foodTrackingApp.controller("bookingDetailsController", function ($scope, movieStubBookingsFactory) {
    // $scope.bookings = movieStubBookingsFactory.query();
-	$scope.bookings = ContactService.list();
+	$scope.contacts = ContactService.list();
 });
 
 
